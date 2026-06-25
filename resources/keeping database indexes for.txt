@@ -1,0 +1,8 @@
+-- Speed up date-range queries when checks are submitted from the Home Floating Availability Bar
+CREATE INDEX idx_bookings_dates ON bookings (check_in_date, check_out_date);
+
+-- Prevent booking overlapping double-allocations on individual physical rooms
+CREATE INDEX idx_booking_rooms_lookup ON booking_rooms (room_id);
+
+-- Speed up search queries mapping historical patterns by guest email addresses
+CREATE INDEX idx_guests_email ON guests (email);
